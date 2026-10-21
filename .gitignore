@@ -1,0 +1,9 @@
+node_modules/
+dist/
+android/
+*.apk
+.wrangler/
+.dev.vars
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

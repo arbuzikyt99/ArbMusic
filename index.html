@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090a0d" />
+  <meta name="description" content="ArbMusic — твоя музыка, твой ритм." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+  <title>ArbMusic — музыка для тебя</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="ArbMusic — главная"><span class="brand-mark">a<span>♪</span></span><span>Arb<span class="brand-light">Music</span></span></a>
+      <div class="side-label">МЕНЮ</div>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Главная</button>
+        <button class="nav-item" data-view="search"><span class="nav-icon">⌕</span>Поиск</button>
+        <button class="nav-item" data-view="library"><span class="nav-icon">▤</span>Моя коллекция</button>
+      </nav>
+      <div class="side-label playlist-label">ТВОЯ МУЗЫКА <button id="new-playlist" class="tiny-add" aria-label="Создать плейлист">＋</button></div>
+      <nav class="playlist-nav" id="playlist-nav"></nav>
+      <div class="sidebar-bottom"><div class="mini-profile"><div class="avatar">A</div><div><b>Слушатель</b><small>Бесплатный аккаунт</small></div><span class="more">···</span></div><button id="upload-side" class="upload-link"><span>＋</span> Добавить свои треки</button></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><div class="history-buttons"><button aria-label="Назад" id="back">‹</button><button aria-label="Вперёд" id="forward">›</button></div><div class="top-search"><span>⌕</span><input id="global-search" type="search" placeholder="Треки, альбомы, исполнители" autocomplete="off" /><kbd>⌘ K</kbd></div><div class="top-actions"><button class="icon-button" id="upload-top" title="Загрузить музыку">＋</button><button class="profile-button" id="auth-open"><span class="avatar small">A</span><span id="profile-label">Войти</span><span class="chevron">⌄</span></button></div></header>
+      <section class="content" id="content" aria-live="polite"></section>
+    </main>
+  </div>
+  <input id="file-picker" type="file" accept="audio/*" multiple hidden />
+  <div class="toast" id="toast"></div>
+  <div class="auth-backdrop" id="auth-modal" hidden><section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="auth-close" id="auth-close" aria-label="Закрыть">×</button><div class="brand-mark auth-mark">a<span>♪</span></div><h2 id="auth-title">Вход в ArbMusic</h2><p class="auth-description">Номер — логин. SMS не нужны; придумай пароль от 8 символов.</p><div class="auth-modes"><button class="auth-mode active" data-auth-mode="login">Войти</button><button class="auth-mode" data-auth-mode="register">Регистрация</button></div><form id="account-form"><label for="phone-input">Номер телефона</label><input id="phone-input" type="tel" autocomplete="tel" placeholder="+7 900 123-45-67" required /><label for="password-input">Пароль</label><input id="password-input" type="password" autocomplete="current-password" minlength="8" placeholder="Не менее 8 символов" required /><button class="primary-button auth-submit" id="auth-submit" type="submit">Войти</button></form><button class="auth-logout" id="auth-logout" hidden>Выйти из аккаунта</button><p class="auth-status" id="auth-status" aria-live="polite"></p></section></div>
+  <footer class="player" id="player" hidden>
+    <div class="now-playing"><div id="now-art" class="cover cover-placeholder"><span>♪</span></div><div class="track-meta"><b id="now-title">Выбери свой трек</b><span id="now-artist">Твоя музыка начинается здесь</span></div><button id="like-current" class="like-button" aria-label="В избранное">♡</button></div>
+    <div class="player-center"><div class="controls"><button id="shuffle" title="Перемешать">⤨</button><button id="previous" title="Предыдущий">⏮</button><button class="play-toggle" id="play-toggle" title="Играть">▶</button><button id="next" title="Следующий">⏭</button><button id="repeat" title="Повтор">↻</button></div><div class="timeline"><span id="current-time">0:00</span><input id="seek" type="range" min="0" max="100" value="0" aria-label="Позиция воспроизведения" /><span id="duration">0:00</span></div></div>
+    <div class="player-right"><button id="lyrics-button" title="Открыть текст песни">Тт <span>Текст</span></button><button id="queue-button" title="Очередь">☷</button><span class="volume-icon">◖))</span><input id="volume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Громкость" /></div>
+    <audio id="audio"></audio>
+  </footer>
+  <nav class="mobile-nav"><button class="active" data-view="home"><span>⌂</span>Главная</button><button data-view="search"><span>⌕</span>Поиск</button><button data-view="library"><span>▤</span>Коллекция</button></nav>
+  <script type="module" src="/auth-config.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
