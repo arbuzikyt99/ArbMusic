@@ -2,7 +2,7 @@ services:
   - type: web
     name: arbmusic
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm ci && npm run build
     startCommand: npm start
     healthCheckPath: /health
@@ -15,6 +15,6 @@ services:
           property: connectionString
 databases:
   - name: arbmusic-db
-    plan: starter
+    plan: free
     databaseName: arbmusic
     user: arbmusic
